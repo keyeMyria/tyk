@@ -182,18 +182,13 @@ func TestNotVersioned(t *testing.T) {
 }
 
 func TestDefaultVersion(t *testing.T) {
-	recorder := httptest.NewRecorder()
 
 	req := testReq(t, "GET", "/bananaphone", nil)
-
 	spec := createDefinitionFromString(nonExpiringMultiDefWithDefault)
-	print(recorder.Header().Get("X-Tyk-Default-Version"))
 	ok, _, _ := spec.RequestValid(req)
+
 	if !ok {
 		t.Error("Request should succeed as default version has been specified in config!")
-	}
-	if def := recorder.Header().Get("X-Tyk-Default-Version"); def != "v2" {
-		t.Error("Default Version header was not applied from config!")
 	}
 }
 

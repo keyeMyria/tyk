@@ -650,7 +650,7 @@ func TestVersioningRequestFail(t *testing.T) {
 	recorder := httptest.NewRecorder()
 	req := testReq(t, "GET", "/", nil)
 	req.Header.Set("authorization", "zz1234")
-	req.Header.Set("version", "v1")
+	req.Header.Set("version", "v3")
 
 	chain := getChain(spec)
 	chain.ServeHTTP(recorder, req)
